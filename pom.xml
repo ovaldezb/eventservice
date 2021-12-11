@@ -11,7 +11,7 @@
 
 	<groupId>mx.com.grupoarpa.boletera</groupId>
 	<artifactId>event</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Event</name>
 	<description>Module to handle Events</description>
 
@@ -71,7 +71,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--plugin>
+			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
 				<version>${dockerfile-maven-version}</version>
@@ -86,13 +86,13 @@
 					</execution>
 				</executions>
 				<configuration>
-					<repository>ga/ms-${project.artifactId}</repository>
+					<repository>ovaldezb/ms-${project.artifactId}</repository>
 					<tag>${project.version}</tag>
 					<buildArgs>
 						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
 					</buildArgs>
 				</configuration>
-			</plugin-->
+			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

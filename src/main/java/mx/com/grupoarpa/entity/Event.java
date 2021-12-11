@@ -17,12 +17,26 @@ public class Event {
 
 	@Id
 	private String id;
-	private String placeEvent;
+	@DBRef
+	private FairGround fairGround;
 	private String nameEvent;
 	@JsonFormat
     (shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy HH:mm:ss")
-	private Date dateEvent;
+	private Date dateStartEvent;
+	@JsonFormat
+    (shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy HH:mm:ss")
+	private Date dateEndEvent;
 	@DBRef
 	private List<Artist> artistas;
-	private String typeEvent;
+	@DBRef
+	private Category category;
+	//@DBRef
+	//private Image eventImage;
+	private double availability;
+	private int courtesyAmount;
+	private Sections[] ticketSections;
+	private String briefDescription;
+	private double percentageComission;
+	private Schedule[] eventSchedule;
+	
 }

@@ -1,12 +1,14 @@
 package mx.com.grupoarpa.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,15 +22,14 @@ import org.springframework.web.client.RestTemplate;
 import lombok.extern.slf4j.Slf4j;
 import mx.com.grupoarpa.entity.Artist;
 import mx.com.grupoarpa.repository.ArtistRepository;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/artists")
+@RequestMapping("/v1/api/artists")
+@EnableSwagger2
+@CrossOrigin(origins = "*")
 public class ArtistController {
-	
-	//private String EVENT_SERVICE="http://events-service/";
-	
-	
 	
 	@Autowired
 	ArtistRepository artisRepo;
@@ -59,7 +60,12 @@ public class ArtistController {
 	
 	@GetMapping("/{idArtist}")
 	public ResponseEntity<?> getArtist(@PathVariable String idArtist){
-		return null;
+		Optional<Artist> artistFound = artisRepo.findById(idArtist); 
+		if(artistFound.isPresent()) {
+			return ResponseEntity.ok(artistFound.get());	
+		}else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 	@PostMapping()

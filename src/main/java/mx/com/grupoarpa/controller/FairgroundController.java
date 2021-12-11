@@ -15,32 +15,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import mx.com.grupoarpa.entity.Artist;
-import mx.com.grupoarpa.entity.Event;
 import mx.com.grupoarpa.entity.FairGround;
-import mx.com.grupoarpa.repository.ArtistRepository;
-import mx.com.grupoarpa.repository.EventRepository;
 import mx.com.grupoarpa.repository.FairgroundRepository;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @RestController
-@RequestMapping("/v1/api/events")
+@RequestMapping("/v1/api/fairgrounds")
 @EnableSwagger2
 @CrossOrigin(origins = "*")
-public class EventController {
-	
-	@Autowired
-	EventRepository eventRepo;
-	
-	@Autowired
-	ArtistRepository artisRepo;
+public class FairgroundController {
 	
 	@Autowired
 	FairgroundRepository fairRepo;
 	
 	@GetMapping()
-	public ResponseEntity<?> getEventList(){
-		List<Event> list = eventRepo.findAll();
+	public ResponseEntity<?> getFairGroundList(){
+		List<FairGround> list = fairRepo.findAll();
+		//log.trace(role);
 		if(list.isEmpty()) {
 			return ResponseEntity.noContent().build();
 		}else {
@@ -49,11 +40,11 @@ public class EventController {
 		
 	}
 	
-	@GetMapping("/{idEvent}")
-	public ResponseEntity<?> getEvent(@PathVariable String idEvent){
-		Optional<Event> event = eventRepo.findById(idEvent);
-		if(event.isPresent()) {
-			return ResponseEntity.ok(event);
+	@GetMapping("/{idFairGround}")
+	public ResponseEntity<?> getFairGround(@PathVariable String idFairGround){
+		Optional<FairGround> fairGroundFound = fairRepo.findById(idFairGround); 
+		if(fairGroundFound.isPresent()) {
+			return ResponseEntity.ok(fairGroundFound.get());	
 		}else {
 			return ResponseEntity.notFound().build();
 		}
@@ -61,28 +52,17 @@ public class EventController {
 	}
 	
 	@PostMapping()
-	public ResponseEntity<?> addEvent(@RequestBody Event event){
-		event.getArtistas().stream().forEach(artist ->{
-			if(artist.getId() == null) {
-				Artist artisAdded = artisRepo.save(artist);
-				artist.setId(artisAdded.getId());
-			}
-		});
-		
-		if(event.getFairGround().getId() == null) {
-			FairGround fairGGroundSave = fairRepo.save(event.getFairGround());
-			event.getFairGround().setId(fairGGroundSave.getId());
-		}
-		return ResponseEntity.ok(eventRepo.save(event));
+	public ResponseEntity<?> addFairGround(@RequestBody FairGround fairGround){
+		return ResponseEntity.ok(fairRepo.save(fairGround));
 	}
 	
 	@PutMapping()
-	public ResponseEntity<?> updateEvent(@PathVariable String idEvent, @RequestBody Event event ){
+	public ResponseEntity<?> updateFairGround(@PathVariable String idFairGround, @RequestBody FairGround event ){
 		return null;
 	}
 	
-	@DeleteMapping("/{idEvent}")
-	public ResponseEntity<?> deleteEvent(@PathVariable String idEvent){
+	@DeleteMapping("/{idFairGround}")
+	public ResponseEntity<?> deleteFairGroundById(@PathVariable String idFairGround){
 		return null;
 	}
 

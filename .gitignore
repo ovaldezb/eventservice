@@ -12,7 +12,11 @@ target/
 .settings
 .springBeans
 .sts4-cache
-
+.DS_Store
+mvnw
+mvnw.cmd
+maven-*
+MavenWrapperDownloader.java
 ### IntelliJ IDEA ###
 .idea
 *.iws

@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:12-alpine
 RUN addgroup -S grupoarpa && adduser -S admin -G grupoarpa
 USER admin:grupoarpa
 VOLUME /tmp
