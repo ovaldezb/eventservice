@@ -21,10 +21,10 @@ public class Event {
 	private FairGround fairGround;
 	private String nameEvent;
 	@JsonFormat
-    (shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy HH:mm:ss")
+    (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private Date dateStartEvent;
 	@JsonFormat
-    (shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy HH:mm:ss")
+    (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private Date dateEndEvent;
 	@DBRef
 	private List<Artist> artistas;

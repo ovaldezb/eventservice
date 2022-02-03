@@ -16,7 +16,7 @@ public class FairGround {
 	private int fairgroundZipCode;
 	private double fairgroundLatitude;
 	private double fairgroundLongitud;
-	private String faigroundStreet;
+	private String fairgroundStreet;
 	private String fairgroundExternalNumber;
 	private String fairgroundInternalNumber;
 }

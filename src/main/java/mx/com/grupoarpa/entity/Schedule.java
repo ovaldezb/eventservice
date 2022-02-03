@@ -11,7 +11,7 @@ public class Schedule {
 
 	private String weekDay;
 	@JsonFormat
-    (shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy HH:mm:ss")
-	private Date starttHour;
+    (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+	private Date startHour;
 	private double durationInHours;
 }
